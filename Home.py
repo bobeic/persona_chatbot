@@ -62,7 +62,7 @@ def main():
             stringio = StringIO(file.getvalue().decode("utf-8"))
 
             texts = text_splitter.split_text(stringio.read())
-            st.write(texts)
+            st.write("Loaded file")
             texts_list += texts
 
     elif current_type == "youtube":
@@ -71,7 +71,7 @@ def main():
             loader = YoutubeLoader.from_youtube_url(url)
             transcript = loader.load()
             docs = text_splitter.split_documents(transcript)
-            st.write(transcript)
+            st.write("Loaded file")
             docs_list += docs
 
     elif current_type == "pdf":
@@ -82,7 +82,7 @@ def main():
             for page in pdf_reader.pages:
                 text += page.extract_text()
             texts = text_splitter.split_text(text)
-            st.write(text)
+            st.write("Loaded file")
             texts_list += texts
 
     else:
