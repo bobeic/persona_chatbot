@@ -2,15 +2,14 @@ import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts.chat import SystemMessagePromptTemplate, HumanMessagePromptTemplate, ChatPromptTemplate
 from langchain.chains import LLMChain
-from langchain.vectorstores import FAISS
 
 # access docs from session state
 
 if "db" not in st.session_state.keys():
-    st.write("No docs loaded yet")
+    st.error("No docs loaded yet")
 
-else:
-    st.write(st.session_state.db)
+# else:
+#     st.write(st.session_state.db)
 
 def search_docs(query):
     docs = st.session_state.db.similarity_search(query, k=4)
