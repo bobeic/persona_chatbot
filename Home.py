@@ -30,20 +30,20 @@ def main():
     st.set_page_config(page_title="Custom chatbot 💬")
     st.title("Add docs")
 
-    # with st.sidebar:
-    #     api_key = st.text_input("OpenAI api key", type="password")
+    with st.sidebar:
+        api_key = st.text_input("OpenAI api key", type="password")
+        # st.write(api_key)
 
-    #     # if st.secrets.api_key:
-    #     #     api_key = st.secrets.api_key
+        # if "api_key" in st.session_state.keys():
+        #     api_key = st.session_state.api_key
 
-    #     if not api_key:
-    #         st.error("Please enter your api key")
-    #     else:
-    #         # st.secrets.api_key = api_key
-    #         embeddings = OpenAIEmbeddings(openai_api_key=api_key)
+        if not api_key:
+            st.error("Please enter your api key")
+        else:
+            st.session_state.api_key = api_key
+            embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 
-    embeddings = OpenAIEmbeddings()
-
+    # embeddings = OpenAIEmbeddings()
 
     current_type = st.selectbox("type", [doc.name for doc in DocType])
 
@@ -129,4 +129,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
