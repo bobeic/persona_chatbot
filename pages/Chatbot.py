@@ -17,7 +17,7 @@ if "db" not in st.session_state.keys():
 
 
 def search_docs(query):
-    docs = st.session_state.db.similarity_search(query, k=4)
+    docs = st.session_state.db.similarity_search(query)
     docs_content = " ".join([d.page_content for d in docs])
     return docs_content
 
