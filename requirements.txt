@@ -2,4 +2,4 @@ streamlit
 langchain
 PyPDF2
 openai
-faiss
+faiss-cpu
