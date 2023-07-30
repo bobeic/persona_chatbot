@@ -29,7 +29,6 @@ def load_page():
 
 
     # streamlit website
-    st.set_page_config(page_title="Custom chatbot 💬")
     st.title("Add docs")
 
     current_type = st.selectbox("type", [doc.name for doc in DocType])

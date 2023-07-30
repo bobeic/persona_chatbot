@@ -2,6 +2,7 @@ import streamlit as st
 
 
 def main():
+    st.set_page_config(page_title="Custom chatbot 💬")
     st.title("Home")
     st.write(
         "Welcome to Custom Chatbot where you can create a personalised chatbot by providing documents for its knowledge base!"
