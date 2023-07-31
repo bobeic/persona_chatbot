@@ -81,12 +81,15 @@ def load_page():
                 db = FAISS.from_documents(docs_list, embeddings)
                 db1 = FAISS.from_texts(texts_list, embeddings)
                 db.merge_from(db1)
+                st.success("Documents submitted successfully")
 
             elif docs_list:
                 db = FAISS.from_documents(docs_list, embeddings)
+                st.success("Documents submitted successfully")
 
             elif texts_list:
                 db = FAISS.from_texts(texts_list, embeddings)
+                st.success("Documents submitted successfully")
 
             else:
                 st.error("No docs submitted")

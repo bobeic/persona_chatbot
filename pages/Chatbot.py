@@ -31,16 +31,18 @@ def query_llm(query, chain):
 def load_page():
     # setup llm
     # initially don't pass in previous messages
-
-    system_template = """
-        You are a helpful assistant that can answer questions about the documents provided: {docs}
+    st.title("Custom chatbot 💬")
+    system_prompt = st.text_area("System Prompt", """
+        You are a helpful assistant that can answer questions about the documents provided.
 
         Only use the factual information from the transcript to answer the question.
 
         If you feel like you don't have enough information, say "I don't know".
 
         Your answers should be verbose and detailed.
-    """
+    """)
+
+    system_template = system_prompt + "Documents: {docs}"
 
     system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
 
@@ -56,7 +58,7 @@ def load_page():
     chain = LLMChain(llm=chat, prompt=chat_prompt)
 
     # app layout
-    st.title("Custom chatbot 💬")
+
 
     # with st.chat_message("user"):
     #     st.write("Hello 👋")
