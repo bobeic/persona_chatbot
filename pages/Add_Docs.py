@@ -27,7 +27,6 @@ def load_vector_store():
 def load_page():
     embeddings = OpenAIEmbeddings(openai_api_key=st.session_state.api_key)
 
-
     # streamlit website
     st.title("Add docs")
 
