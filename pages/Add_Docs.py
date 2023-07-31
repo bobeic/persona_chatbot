@@ -47,7 +47,7 @@ def load_page():
             stringio = StringIO(file.getvalue().decode("utf-8"))
 
             texts = text_splitter.split_text(stringio.read())
-            st.write("Loaded file")
+            st.success("Loaded file")
             texts_list += texts
 
     elif current_type == "youtube":
@@ -56,7 +56,7 @@ def load_page():
             loader = YoutubeLoader.from_youtube_url(url)
             transcript = loader.load()
             docs = text_splitter.split_documents(transcript)
-            st.write("Loaded file")
+            st.success("Loaded file")
             docs_list += docs
 
     elif current_type == "pdf":
@@ -67,7 +67,7 @@ def load_page():
             for page in pdf_reader.pages:
                 text += page.extract_text()
             texts = text_splitter.split_text(text)
-            st.write("Loaded file")
+            st.success("Loaded file")
             texts_list += texts
 
     else:
@@ -77,24 +77,19 @@ def load_page():
 
     with col1:
         if st.button("Submit docs"):
-            # print(f"docs: {docs_list}")
-            # print(f"texts: {texts_list}")
             if docs_list and texts_list:
-                print("docs and texts")
                 db = FAISS.from_documents(docs_list, embeddings)
                 db1 = FAISS.from_texts(texts_list, embeddings)
                 db.merge_from(db1)
 
             elif docs_list:
-                print("docs")
                 db = FAISS.from_documents(docs_list, embeddings)
 
             elif texts_list:
-                print("texts")
                 db = FAISS.from_texts(texts_list, embeddings)
 
             else:
-                st.write("No docs submitted")
+                st.error("No docs submitted")
 
             with open(store_path, "wb") as f:
                 pickle.dump(db, f)
