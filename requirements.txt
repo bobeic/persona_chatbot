@@ -4,3 +4,4 @@ PyPDF2
 openai
 faiss-cpu==1.7.4
 tiktoken
+langchain-community
